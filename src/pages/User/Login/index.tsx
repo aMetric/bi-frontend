@@ -1,5 +1,4 @@
 import Footer from '@/components/Footer';
-import {getFakeCaptcha} from '@/services/ant-design-pro/login';
 import {
   AlipayCircleOutlined,
   LockOutlined,
@@ -15,9 +14,11 @@ import {Alert, message, Tabs} from 'antd';
 import React, {useEffect, useState} from 'react';
 import {flushSync} from 'react-dom';
 import Settings from '../../../../config/defaultSettings';
-import {listChartByPageUsingPOST} from "@/services/yubi/chartController";
+// @ts-ignore
+import {listChartByPageUsingPost} from "@/services/yubi/chartController";
 import {Link} from "@@/exports";
-import {getLoginUserUsingGET, userLoginUsingPOST} from "@/services/yubi/userController";
+// @ts-ignore
+import {getLoginUserUsingGet, userLoginUsingPost} from "@/services/yubi/userController";
 
 const ActionIcons = () => {
   const langClassName = useEmotionCss(({token}) => {
@@ -74,7 +75,7 @@ const Login: React.FC = () => {
 
 
   useEffect(() => {
-    listChartByPageUsingPOST({}).then(res => {
+    listChartByPageUsingPost({}).then(res => {
       console.error('res', res)
     })
   })
@@ -83,7 +84,8 @@ const Login: React.FC = () => {
    * 登入成功后获取用户登入信息
    */
   const fetchUserInfo = async () => {
-    const userInfo = await getLoginUserUsingGET();
+    const userInfo = await getLoginUserUsingGet();
+    console.log("----------userInfo",userInfo) //todo 获取不到用户
     if (userInfo) {
       flushSync(() => {
         setInitialState((s) => ({
@@ -96,16 +98,21 @@ const Login: React.FC = () => {
   const handleSubmit = async (values: API.UserLoginRequest) => {
     try {
       // 登录
-      const res = await userLoginUsingPOST(values);
+      const res = await userLoginUsingPost(values);
+
       if (res.code === 0) {
         const defaultLoginSuccessMessage = '登录成功！';
         message.success(defaultLoginSuccessMessage);
-        await fetchUserInfo();
         const urlParams = new URL(window.location.href).searchParams;
-        history.push(urlParams.get('redirect') || '/');
+        // 设置一个延迟100毫秒的定时器
+        // 定时器触发后，导航到重定向URL，如果没有重定向URL，则导航到根路径
+        setTimeout(() => {
+          history.push(urlParams.get('redirect') || '/');
+        }, 100);
+        await fetchUserInfo();
         return;
       } else {
-        message.error(res.message)
+        message.error(res.message);
       }
     } catch (error) {
       const defaultLoginFailureMessage = '登录失败，请重试！';
@@ -233,15 +240,6 @@ const Login: React.FC = () => {
                     message: '验证码是必填项！',
                   },
                 ]}
-                onGetCaptcha={async (phone) => {
-                  const result = await getFakeCaptcha({
-                    phone,
-                  });
-                  if (!result) {
-                    return;
-                  }
-                  message.success('获取验证码成功！验证码为：1234');
-                }}
               />
             </>
           )}

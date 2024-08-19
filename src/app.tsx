@@ -6,7 +6,8 @@ import type {RunTimeLayoutConfig} from '@umijs/max';
 import {history, Link} from '@umijs/max';
 import {AvatarDropdown, AvatarName} from './components/RightContent/AvatarDropdown';
 import {errorConfig} from './requestConfig';
-import {getLoginUserUsingGET} from "@/services/yubi/userController";
+// @ts-ignore
+import {getLoginUserUsingGet} from "@/services/yubi/userController";
 
 const isDev = process.env.NODE_ENV === 'development';
 const loginPath = '/user/login';
@@ -19,7 +20,7 @@ export async function getInitialState(): Promise<{
 }> {
   const fetchUserInfo = async () => {
     try {
-      const msg = await getLoginUserUsingGET();
+      const msg = await getLoginUserUsingGet();
       return msg.data;
     } catch (error) {
       history.push(loginPath);
