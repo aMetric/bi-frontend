@@ -6,7 +6,8 @@
     routes: [{ path: '/user/login', component: './User/Login' }],
   },
   { path: '/', redirect: '/add_chart' },
-  { name: '智能分析', path: '/add_chart', icon: 'barChart', component: './AddChart' },
+  { name: '智能分析(同步)', path: '/add_chart', icon: 'barChart', component: './AddChart' },
+  { name: '智能分析(异步)', path: '/add_chart_async', icon: 'barChart', component: './AddChartAsync' },
   { name: '我的图表', path: '/my_chart', icon: 'pieChart', component: './MyChart' },
   {
     path: '/admin',

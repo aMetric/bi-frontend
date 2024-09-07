@@ -85,12 +85,11 @@ const Login: React.FC = () => {
    */
   const fetchUserInfo = async () => {
     const userInfo = await getLoginUserUsingGet();
-    console.log("----------userInfo",userInfo) //todo 获取不到用户
-    if (userInfo) {
+    if (userInfo.code === 0) {
       flushSync(() => {
         setInitialState((s) => ({
           ...s,
-          currentUser: userInfo,
+          currentUser: userInfo.data,
         }));
       });
     }
