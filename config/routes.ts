@@ -7,7 +7,18 @@
   },
   { path: '/', redirect: '/add_chart' },
   { name: '智能分析(同步)', path: '/add_chart', icon: 'barChart', component: './AddChart' },
-  { name: '智能分析(异步)', path: '/add_chart_async', icon: 'barChart', component: './AddChartAsync' },
+  {
+    name: '智能分析(异步)',
+    path: '/add_chart_async',
+    icon: 'barChart',
+    component: './AddChartAsync',
+  },
+  {
+    name: '智能分析(异步消息队列)',
+    path: '/add_chart_async_mq',
+    icon: 'barChart',
+    component: './AddChartAsyncMq',
+  },
   { name: '我的图表', path: '/my_chart', icon: 'pieChart', component: './MyChart' },
   {
     path: '/admin',
