@@ -1,13 +1,13 @@
 import Footer from '@/components/Footer';
-import {Question} from '@/components/RightContent';
-import {LinkOutlined} from '@ant-design/icons';
-import {SettingDrawer} from '@ant-design/pro-components';
-import type {RunTimeLayoutConfig} from '@umijs/max';
-import {history, Link} from '@umijs/max';
-import {AvatarDropdown, AvatarName} from './components/RightContent/AvatarDropdown';
-import {errorConfig} from './requestConfig';
+import { Question } from '@/components/RightContent';
+import { LinkOutlined } from '@ant-design/icons';
+import { SettingDrawer } from '@ant-design/pro-components';
+import type { RunTimeLayoutConfig } from '@umijs/max';
+import { history, Link } from '@umijs/max';
+import { AvatarDropdown, AvatarName } from './components/RightContent/AvatarDropdown';
+import { errorConfig } from './requestConfig';
 // @ts-ignore
-import {getLoginUserUsingGet} from "@/services/yubi/userController";
+import { getLoginUserUsingGet } from '@/services/yubi/userController';
 
 const isDev = process.env.NODE_ENV === 'development';
 const loginPath = '/user/login';
@@ -35,8 +35,7 @@ export async function getInitialState(): Promise<{
       currentUser,
     };
   }
-  return {
-  };
+  return {};
 }
 
 // ProLayout 支持的api https://procomponents.ant.design/components/layout
@@ -122,7 +121,8 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
  * @doc https://umijs.org/docs/max/request#配置
  */
 export const request = {
-  baseURL: "http://localhost:14661",
-  withCredentials:true,
+  baseURL: 'http://localhost:8101',
+  // baseURL: "http://117.72.86.124:8101",
+  withCredentials: true,
   ...errorConfig,
 };

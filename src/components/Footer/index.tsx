@@ -10,24 +10,26 @@ const Footer: React.FC = () => {
       style={{
         background: 'none',
       }}
-      copyright={`${currentYear} ${defaultMessage}`}
+      // copyright={`${currentYear} ${defaultMessage}`}
+      copyright={
+        <>
+          {`${currentYear} ${defaultMessage} | `}
+          <a href="http://beian.miit.gov.cn" target="_blank" rel="noopener noreferrer">
+            皖ICP备2023017853号
+          </a>
+        </>
+      }
       links={[
-        {
-          key: '智能BI',
-          title: '智能BI',
-          href: 'https://pro.ant.design',
-          blankTarget: true,
-        },
         {
           key: 'github',
           title: <GithubOutlined />,
-          href: 'https://github.com/ant-design/ant-design-pro',
+          href: 'https://github.com/aMetric',
           blankTarget: true,
         },
         {
           key: '智能BI',
           title: '智能BI',
-          href: 'https://ant.design',
+          href: 'https://github.com/aMetric',
           blankTarget: true,
         },
       ]}
