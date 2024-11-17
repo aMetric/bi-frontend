@@ -121,7 +121,8 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
  * @doc https://umijs.org/docs/max/request#配置
  */
 export const request = {
-  baseURL: 'http://localhost:8101',
+  // baseURL: 'http://localhost:8101',
+  baseURL: 'http://bi.coderwhs.com:8101',
   // baseURL: "http://117.72.86.124:8101",
   withCredentials: true,
   ...errorConfig,

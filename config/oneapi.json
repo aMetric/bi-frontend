@@ -6,10 +6,10 @@
   },
   "servers": [
     {
-      "url": "http://localhost:8000/"
+      "url": "http://117.72.86.124:8101/"
     },
     {
-      "url": "https://localhost:8000/"
+      "url": "https://117.72.86.124:8101/"
     }
   ],
   "paths": {
