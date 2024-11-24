@@ -1,9 +1,9 @@
-import {genChartByAiAsyncUsingPost} from '@/services/yubi/chartController';
+import { genChartByAiAsyncUsingPost } from '@/services/yubi/chartController';
 import { UploadOutlined } from '@ant-design/icons';
 import { Button, Card, Form, Input, message, Select, Space, Upload } from 'antd';
+import { useForm } from 'antd/es/form/Form';
 import TextArea from 'antd/es/input/TextArea';
 import React, { useState } from 'react';
-import {useForm} from "antd/es/form/Form";
 
 /**
  * 添加图表(异步)页面
@@ -61,35 +61,33 @@ const AddChartAsync: React.FC = () => {
           labelCol={{ span: 4 }}
           wrapperCol={{ span: 16 }}
           onFinish={onFinish}
-          initialValues={{  }}
+          initialValues={{}}
         >
-          <Form.Item name="goal" label="分析目标" rules={[{ required: true, message: '请输入分析目标!' }]}>
-            <TextArea placeholder="请输入你的分析需求，比如：分析网站用户的增长情况"/>
+          <Form.Item
+            name="goal"
+            label="分析目标"
+            rules={[{ required: true, message: '请输入分析目标!' }]}
+          >
+            <TextArea placeholder="请输入你的分析需求，比如：分析网站用户的增长情况" />
           </Form.Item>
 
           <Form.Item name="name" label="图表名称">
             <Input placeholder="请输入图表名称" />
           </Form.Item>
 
-          <Form.Item
-            name="chartType"
-            label="图表类型"
-          >
+          <Form.Item name="chartType" label="图表类型">
             <Select
               options={[
                 { value: '折线图', label: '折线图' },
                 { value: '柱状图', label: '柱状图' },
-                { value: '堆叠图', label: '堆叠图' },
+                // { value: '面积图', label: '面积图' },
                 { value: '饼图', label: '饼图' },
                 { value: '雷达图', label: '雷达图' },
               ]}
             />
           </Form.Item>
 
-          <Form.Item
-            name="file"
-            label="原始数据"
-          >
+          <Form.Item name="file" label="原始数据">
             <Upload name="file" maxCount={1}>
               <Button icon={<UploadOutlined />}>上传 CSV 文件</Button>
             </Upload>
